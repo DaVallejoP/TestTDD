@@ -7,6 +7,23 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class RoverTest {
+    class DirectionMock(val expectedDirection:Direction = Direction.NORTH) : IDirection {
+        var trcalled = false;
+        var tlcalled = false;
+        override fun turnRigth(): Direction {
+            trcalled = true
+            return expectedDirection
+        }
+
+        override fun turnLeft(): Direction {
+            tlcalled = true
+            return expectedDirection
+        }
+
+
+
+    }
+
     private lateinit var sut:Rover
     private val TEST_X = 3
     private val TEST_Y = 2
@@ -126,4 +143,24 @@ class RoverTest {
         assertEquals(Direction.SOUTH,sut.direction)
     }
 
+    @Test
+    fun testRoverTurnRigthCallDirectionTurnRigth() {
+        //Arrange
+        val mock = DirectionMock()
+        //Act
+        sut.direction = mock
+        sut.applyCommand("R")
+        //Assert
+        assertTrue(mock.trcalled)
+    }
+    @Test
+    fun testRoverTurnLeftallDirectionTurnLeft() {
+        //Arrange
+        val mock = DirectionMock()
+        //Act
+        sut.direction = mock
+        sut.applyCommand("L")
+        //Assert
+        assertTrue(mock.tlcalled)
+    }
 }

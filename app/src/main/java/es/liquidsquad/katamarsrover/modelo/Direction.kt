@@ -1,9 +1,14 @@
 package es.liquidsquad.katamarsrover.modelo
 
-enum class Direction {
+interface IDirection{
+    fun turnRigth(): Direction
+    fun turnLeft(): Direction
+}
+
+enum class Direction : IDirection {
     NORTH,EAST,SOUTH,WEST;
 
-    fun turnRigth(): Direction = let {
+    override fun turnRigth(): Direction = let {
         when(this){
             NORTH -> EAST
             EAST  -> SOUTH
@@ -12,7 +17,7 @@ enum class Direction {
         }
     }
 
-    fun turnLeft(): Direction = let {
+    override fun turnLeft(): Direction = let {
         when(this){
             NORTH -> WEST
             EAST  -> NORTH
