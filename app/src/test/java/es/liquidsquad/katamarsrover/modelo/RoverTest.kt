@@ -163,4 +163,29 @@ class RoverTest {
         //Assert
         assertTrue(mock.tlcalled)
     }
+
+
+    @Test
+    fun testRoverTurnRigthStoreDirectionTurnRigth() {
+        //Arrange
+        val mock = DirectionMock(Direction.SOUTH)
+        //Act
+        sut.direction = mock
+        sut.applyCommand("R")
+        //Assert
+        assertEquals(Direction.SOUTH,sut.direction)
+    }
+
+    @Test
+    fun testRoverTurnLeftStoreDirectionTurnLeft() {
+        //Arrange
+        val mock = DirectionMock(Direction.SOUTH)
+        //Act
+        sut.direction = mock
+        sut.applyCommand("L")
+        //Assert
+        assertEquals(Direction.SOUTH,sut.direction)
+    }
+
+
 }
