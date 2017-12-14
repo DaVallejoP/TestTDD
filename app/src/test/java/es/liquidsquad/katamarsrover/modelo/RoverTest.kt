@@ -10,7 +10,10 @@ class RoverTest {
     private lateinit var sut:Rover
     private val TEST_X = 3
     private val TEST_Y = 2
-    private val TEST_DEFAULT_DIR: Char = 'N'
+    private val TEST_DIR_NORTH: Char = 'N'
+    private val TEST_DIR_SOUTH: Char = 'S'
+    private val TEST_DIR_EAST: Char = 'E'
+    private val TEST_DIR_WEST: Char = 'W'
     private val TEST_RIGTH = "R"
     private val TEST_LEFT = "L"
 
@@ -82,23 +85,48 @@ class RoverTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(TEST_DEFAULT_DIR,sut.defaultDirection)
+        assertEquals(TEST_DIR_NORTH,sut.direction)
     }
     @Test
-    fun changeDirectionRigthModifiesDirection() {
+    fun changeDirectionRigthPointsEast() {
         //Arrange
         //Act
         sut.applyCommand(command = TEST_RIGTH)
         //Assert
-        assertEquals('E',sut.defaultDirection)
+        assertEquals('E',sut.direction)
     }
     @Test
-    fun changeDirectionRigthRigthModifiesDirection() {
+    fun changeDirectionRigthRigthPointsSouth() {
         //Arrange
         //Act
         sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH))
         //Assert
-        assertEquals('S',sut.defaultDirection)
+        assertEquals('S',sut.direction)
+    }
+    @Test
+    fun changeDirectionRigthRigthRigthPointsWest() {
+        //Arrange
+        //Act
+        sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH+ TEST_RIGTH))
+        //Assert
+        assertEquals('W',sut.direction)
+    }
+    @Test
+    fun changeDirectionRigthRigthRigthRigthPointsNorth() {
+        //Arrange
+        //Act
+        sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH+ TEST_RIGTH + TEST_RIGTH))
+        //Assert
+        assertEquals('N',sut.direction)
+    }
+    @Test
+    fun changeDirectionRigthFromEastPointsSouth() {
+        //Arrange
+        sut = Rover(direction= TEST_DIR_EAST)
+        //Act
+        sut.applyCommand(command =  TEST_RIGTH)
+        //Assert
+        assertEquals('S',sut.direction)
     }
 
 }
