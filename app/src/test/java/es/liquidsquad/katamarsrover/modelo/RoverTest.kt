@@ -187,5 +187,27 @@ class RoverTest {
         assertEquals(Direction.SOUTH,sut.direction)
     }
 
+    @Test
+    fun testRoverTurnRigthStoreDirectionTurnRigthCopy() {
+        //Arrange
+        val mock = DirectionMock(Direction.NORTH)
+        //Act
+        sut.direction = mock
+        sut.applyCommand("R")
+        //Assert
+        assertEquals(Direction.NORTH,sut.direction)
+    }
+
+    @Test
+    fun testRoverTurnLeftStoreDirectionTurnLeftCopy() {
+        //Arrange
+        val mock = DirectionMock(Direction.NORTH)
+        //Act
+        sut.direction = mock
+        sut.applyCommand("L")
+        //Assert
+        assertEquals(Direction.NORTH,sut.direction)
+    }
+
 
 }
