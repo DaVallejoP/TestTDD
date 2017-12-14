@@ -11,7 +11,8 @@ class RoverTest {
     private val TEST_X = 3
     private val TEST_Y = 2
     private val TEST_DEFAULT_DIR: Char = 'N'
-    private val TEST_RIGTH = 'R'
+    private val TEST_RIGTH = "R"
+    private val TEST_LEFT = "L"
 
     @Before
     fun setUp() {
@@ -90,6 +91,14 @@ class RoverTest {
         sut.applyCommand(command = TEST_RIGTH)
         //Assert
         assertEquals('E',sut.defaultDirection)
+    }
+    @Test
+    fun changeDirectionRigthRigthModifiesDirection() {
+        //Arrange
+        //Act
+        sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH))
+        //Assert
+        assertEquals('S',sut.defaultDirection)
     }
 
 }
