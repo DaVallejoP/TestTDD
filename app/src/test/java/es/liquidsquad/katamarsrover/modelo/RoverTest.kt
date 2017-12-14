@@ -1,11 +1,15 @@
 package es.liquidsquad.katamarsrover.modelo
 
+import junitparams.JUnitParamsRunner
+import junitparams.Parameters
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(JUnitParamsRunner::class)
 class RoverTest {
     private lateinit var sut:Rover
     private val TEST_X = 3
@@ -220,6 +224,28 @@ class RoverTest {
         assertEquals(0,sut.x)
 
     }
+
+    @Test
+    @Parameters(method = "parametersMove")
+    fun moveFromStatechangesCoordinates( x:Int, y:Int,direction: Direction,command:String,expectedX:Int,expectedY:Int) {
+        //Arrange
+        sut = Rover(x,y)
+        sut.direction = direction
+        //Act
+        sut.applyCommand(command)
+        //Assert
+        assertEquals(expectedX ,sut.x)
+        assertEquals(expectedY ,sut.y)
+    }
+
+    fun  parametersMove(): List<Any> {
+        return listOf(listOf<Any>(1,1,Direction.NORTH,"F",1,2),
+                listOf<Any>(1,1,Direction.EAST,"F",2,1),
+                listOf<Any>(1,1,Direction.SOUTH,"F",1,0),
+                listOf<Any>(1,1,Direction.WEST,"F",0,1))
+    }
+
+
     @Test
     fun moveForwarfFromOtherStateIncermentsYNotX() {
         //Arrange
