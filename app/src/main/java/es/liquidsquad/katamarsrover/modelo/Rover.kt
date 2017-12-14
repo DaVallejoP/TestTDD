@@ -1,7 +1,7 @@
 package es.liquidsquad.katamarsrover.modelo
 
 
-class Rover(val x: Int = DEFAULT_X, val y: Int = DEFAULT_Y, var direction: IDirection = DEFAULT_DIR) {
+class Rover(var x: Int = DEFAULT_X, var y: Int = DEFAULT_Y, var direction: IDirection = DEFAULT_DIR) {
     companion object {
         const val DEFAULT_X = 0
         const val DEFAULT_Y = 0
@@ -19,5 +19,10 @@ class Rover(val x: Int = DEFAULT_X, val y: Int = DEFAULT_Y, var direction: IDire
         if(c == 'L'){
             direction = direction.let { it.turnLeft() }
         }
+        if(c == 'F'){
+            y = 1
+        }
     }
+
+
 }

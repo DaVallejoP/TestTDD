@@ -209,5 +209,14 @@ class RoverTest {
         assertEquals(Direction.NORTH,sut.direction)
     }
 
+    @Test
+    fun moveForwarfFromInitialStateIncermentsY() {
+        //Arrange
+        //Act
+        sut.applyCommand("F")
+        //Assert
+        assertEquals(1,sut.y)
+        assertEquals(0,sut.x)
 
+    }
 }
