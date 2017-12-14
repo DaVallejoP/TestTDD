@@ -226,6 +226,19 @@ class RoverTest {
     }
 
     @Test
+    @Parameters("1,1,NORTH,F,1,2","1,1,EAST,F,2,1")
+    fun moveFromStatechangesCoordinatesParameters( x:Int, y:Int,direction: Direction,command:String,expectedX:Int,expectedY:Int) {
+        //Arrange
+        sut = Rover(x,y)
+        sut.direction = direction
+        //Act
+        sut.applyCommand(command)
+        //Assert
+        assertEquals(expectedX ,sut.x)
+        assertEquals(expectedY ,sut.y)
+    }
+
+    @Test
     @Parameters(method = "parametersMove")
     fun moveFromStatechangesCoordinates( x:Int, y:Int,direction: Direction,command:String,expectedX:Int,expectedY:Int) {
         //Arrange
@@ -239,7 +252,8 @@ class RoverTest {
     }
 
     fun  parametersMove(): List<Any> {
-        return listOf(listOf<Any>(1,1,Direction.NORTH,"F",1,2),
+        return listOf(
+                listOf<Any>(1,1,Direction.NORTH,"F",1,2),
                 listOf<Any>(1,1,Direction.EAST,"F",2,1),
                 listOf<Any>(1,1,Direction.SOUTH,"F",1,0),
                 listOf<Any>(1,1,Direction.WEST,"F",0,1))
