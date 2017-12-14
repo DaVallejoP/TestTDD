@@ -19,7 +19,7 @@ class DirectionTest {
     fun turnRigthFromNorthIsEast() {
         //Arrange
         var sut = Direction.NORTH
-        assertEquals(Direction.NORTH,sut.turnRigth())
+        assertEquals(Direction.EAST,sut.turnRigth())
         //Act
         //Assert
 
