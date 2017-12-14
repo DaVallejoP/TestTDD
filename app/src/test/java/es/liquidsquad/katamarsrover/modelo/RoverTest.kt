@@ -79,7 +79,6 @@ class RoverTest {
         assertEquals(TEST_X,sut.x)
     }
 
-
     @Test
     fun defaultDirectionIsNorth() {
         //Arrange

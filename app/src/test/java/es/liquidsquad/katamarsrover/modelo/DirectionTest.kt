@@ -40,11 +40,43 @@ class DirectionTest {
         assertEquals(Direction.WEST,sut.turnRigth())
     }
     @Test
-    fun turnRigthFroMWestIsNorth() {
+    fun turnRigthFromWestIsNorth() {
         //Arrange
         var sut = Direction.WEST
         //Act
         //Assert
         assertEquals(Direction.NORTH,sut.turnRigth())
+    }
+    @Test
+    fun turnLeftFromNorthIsWest() {
+        //Arrange
+        var sut = Direction.NORTH
+        //Act
+        //Assert
+        assertEquals(Direction.WEST,sut.turnLeft())
+    }
+    @Test
+    fun turnLeftFromEastIsSouth() {
+        //Arrange
+        var sut = Direction.WEST
+        //Act
+        //Assert
+        assertEquals(Direction.SOUTH,sut.turnLeft())
+    }
+    @Test
+    fun turnLeftFromSouthIsEast() {
+        //Arrange
+        var sut = Direction.SOUTH
+        //Act
+        //Assert
+        assertEquals(Direction.EAST,sut.turnLeft())
+    }
+    @Test
+    fun turnLeftFroEastIsNorth() {
+        //Arrange
+        var sut = Direction.WEST
+        //Act
+        //Assert
+        assertEquals(Direction.SOUTH,sut.turnLeft())
     }
 }
