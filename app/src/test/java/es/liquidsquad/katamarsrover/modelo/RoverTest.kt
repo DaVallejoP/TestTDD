@@ -7,6 +7,12 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class RoverTest {
+    private lateinit var sut:Rover
+    private val TEST_X = 3
+    private val TEST_Y = 2
+    val TEST_RIGTH = "R"
+    val TEST_EAST = "L"
+
     class DirectionMock(val expectedDirection:Direction = Direction.NORTH) : IDirection {
         var trcalled = false;
         var tlcalled = false;
@@ -24,11 +30,6 @@ class RoverTest {
 
     }
 
-    private lateinit var sut:Rover
-    private val TEST_X = 3
-    private val TEST_Y = 2
-    val TEST_RIGTH = "R"
-    val TEST_EAST = "L"
 
     @Before
     fun setUp() {
@@ -210,7 +211,7 @@ class RoverTest {
     }
 
     @Test
-    fun moveForwarfFromInitialStateIncermentsY() {
+    fun moveForwarfFromInitialStateIncermentsYNotX() {
         //Arrange
         //Act
         sut.applyCommand("F")
@@ -219,4 +220,53 @@ class RoverTest {
         assertEquals(0,sut.x)
 
     }
+    @Test
+    fun moveForwarfFromOtherStateIncermentsYNotX() {
+        //Arrange
+        sut = Rover(TEST_X,TEST_Y)
+        //Act
+        sut.applyCommand("F")
+        //Assert
+        assertEquals(TEST_Y + 1 ,sut.y)
+        assertEquals(TEST_X ,sut.x)
+
+    }
+    @Test
+    fun moveRigthFromOtherStateIncermentsXNotY() {
+        //Arrange
+        sut = Rover(TEST_X,TEST_Y)
+        sut.direction = Direction.EAST
+        //Act
+        sut.applyCommand("F")
+        //Assert
+        assertEquals(TEST_X + 1 ,sut.x)
+        assertEquals(TEST_Y ,sut.y)
+
+    }
+    @Test
+    fun moveLeftFromOtherStateDecrementsXNotY() {
+        //Arrange
+        sut = Rover(TEST_X,TEST_Y)
+        sut.direction = Direction.WEST
+        //Act
+        sut.applyCommand("F")
+        //Assert
+        assertEquals(TEST_X - 1 ,sut.x)
+        assertEquals(TEST_Y ,sut.y)
+
+    }
+
+    @Test
+    fun moveBackFromOtherStateDecrementsYNotX() {
+        //Arrange
+        sut = Rover(TEST_X,TEST_Y)
+        sut.direction = Direction.SOUTH
+        //Act
+        sut.applyCommand("F")
+        //Assert
+        assertEquals(TEST_X ,sut.x)
+        assertEquals(TEST_Y -1 ,sut.y)
+
+    }
+
 }

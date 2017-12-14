@@ -20,7 +20,14 @@ class Rover(var x: Int = DEFAULT_X, var y: Int = DEFAULT_Y, var direction: IDire
             direction = direction.let { it.turnLeft() }
         }
         if(c == 'F'){
-            y = 1
+            when(direction){
+                Direction.NORTH -> y++
+                Direction.EAST  -> x++
+                Direction.SOUTH -> y--
+                Direction.WEST  -> x--
+
+
+            }
         }
     }
 
