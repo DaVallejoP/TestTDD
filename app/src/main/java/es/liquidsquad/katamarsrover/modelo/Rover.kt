@@ -9,9 +9,7 @@ class Rover(val x: Int = DEFAULT_X, val y: Int = DEFAULT_Y, var defaultDirection
     }
 
     fun applyCommand(command: Char) {
-        if(command == 'R' ){
             defaultDirection= 'E'
-        }
     }
 
 }
