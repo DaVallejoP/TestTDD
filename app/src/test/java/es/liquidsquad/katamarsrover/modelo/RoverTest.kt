@@ -10,12 +10,8 @@ class RoverTest {
     private lateinit var sut:Rover
     private val TEST_X = 3
     private val TEST_Y = 2
-    private val TEST_DIR_NORTH: Char = 'N'
-    private val TEST_DIR_SOUTH: Char = 'S'
-    private val TEST_DIR_EAST: Char = 'E'
-    private val TEST_DIR_WEST: Char = 'W'
-    private val TEST_RIGTH = "R"
-    private val TEST_LEFT = "L"
+    val TEST_RIGTH = "R"
+    val TEST_EAST = "L"
 
     @Before
     fun setUp() {
@@ -84,15 +80,17 @@ class RoverTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(TEST_DIR_NORTH,sut.direction)
+        assertEquals(Direction.NORTH,sut.direction)
     }
+
+
     @Test
     fun changeDirectionRigthPointsEast() {
         //Arrange
         //Act
         sut.applyCommand(command = TEST_RIGTH)
         //Assert
-        assertEquals('E',sut.direction)
+        assertEquals(Direction.EAST,sut.direction)
     }
     @Test
     fun changeDirectionRigthRigthPointsSouth() {
@@ -100,7 +98,7 @@ class RoverTest {
         //Act
         sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH))
         //Assert
-        assertEquals('S',sut.direction)
+        assertEquals(Direction.SOUTH,sut.direction)
     }
     @Test
     fun changeDirectionRigthRigthRigthPointsWest() {
@@ -108,7 +106,7 @@ class RoverTest {
         //Act
         sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH+ TEST_RIGTH))
         //Assert
-        assertEquals('W',sut.direction)
+        assertEquals(Direction.WEST,sut.direction)
     }
     @Test
     fun changeDirectionRigthRigthRigthRigthPointsNorth() {
@@ -116,18 +114,16 @@ class RoverTest {
         //Act
         sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH+ TEST_RIGTH + TEST_RIGTH))
         //Assert
-        assertEquals('N',sut.direction)
+        assertEquals(Direction.NORTH,sut.direction)
     }
     @Test
     fun changeDirectionRigthFromEastPointsSouth() {
         //Arrange
-        sut = Rover(direction= TEST_DIR_EAST)
+        sut = Rover(direction= Direction.EAST)
         //Act
         sut.applyCommand(command =  TEST_RIGTH)
         //Assert
-        assertEquals('S',sut.direction)
+        assertEquals(Direction.SOUTH,sut.direction)
     }
-
-
 
 }
