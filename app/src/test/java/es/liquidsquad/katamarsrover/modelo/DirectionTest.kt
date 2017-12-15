@@ -21,7 +21,7 @@ class DirectionTest {
         var sut = Direction.NORTH
         //Act
         //Assert
-        assertEquals(Direction.EAST,sut.turnRigth())
+        assertEquals(Direction.EAST, sut.turnRigth())
     }
     @Test
     fun turnRigthFromEastIsSouth() {
@@ -29,7 +29,7 @@ class DirectionTest {
         var sut = Direction.EAST
         //Act
         //Assert
-        assertEquals(Direction.SOUTH,sut.turnRigth())
+        assertEquals(Direction.SOUTH, sut.turnRigth())
     }
     @Test
     fun turnRigthFroMSouthIsWest() {
@@ -37,7 +37,7 @@ class DirectionTest {
         var sut = Direction.SOUTH
         //Act
         //Assert
-        assertEquals(Direction.WEST,sut.turnRigth())
+        assertEquals(Direction.WEST, sut.turnRigth())
     }
     @Test
     fun turnRigthFromWestIsNorth() {
@@ -45,7 +45,7 @@ class DirectionTest {
         var sut = Direction.WEST
         //Act
         //Assert
-        assertEquals(Direction.NORTH,sut.turnRigth())
+        assertEquals(Direction.NORTH, sut.turnRigth())
     }
     @Test
     fun turnLeftFromNorthIsWest() {
@@ -53,7 +53,7 @@ class DirectionTest {
         var sut = Direction.NORTH
         //Act
         //Assert
-        assertEquals(Direction.WEST,sut.turnLeft())
+        assertEquals(Direction.WEST, sut.turnLeft())
     }
     @Test
     fun turnLeftFromEastIsSouth() {
@@ -61,7 +61,7 @@ class DirectionTest {
         var sut = Direction.WEST
         //Act
         //Assert
-        assertEquals(Direction.SOUTH,sut.turnLeft())
+        assertEquals(Direction.SOUTH, sut.turnLeft())
     }
     @Test
     fun turnLeftFromSouthIsEast() {
@@ -69,7 +69,7 @@ class DirectionTest {
         var sut = Direction.SOUTH
         //Act
         //Assert
-        assertEquals(Direction.EAST,sut.turnLeft())
+        assertEquals(Direction.EAST, sut.turnLeft())
     }
     @Test
     fun turnLeftFroEastIsNorth() {
@@ -77,6 +77,6 @@ class DirectionTest {
         var sut = Direction.WEST
         //Act
         //Assert
-        assertEquals(Direction.SOUTH,sut.turnLeft())
+        assertEquals(Direction.SOUTH, sut.turnLeft())
     }
 }

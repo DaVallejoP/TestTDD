@@ -11,15 +11,15 @@ import org.junit.runner.RunWith
 
 @RunWith(JUnitParamsRunner::class)
 class RoverTest {
-    private lateinit var sut:Rover
+    private lateinit var sut: Rover
     private val TEST_X = 3
     private val TEST_Y = 2
     val TEST_RIGTH = "R"
     val TEST_EAST = "L"
 
-    class DirectionMock(val expectedDirection:Direction = Direction.NORTH) : IDirection {
-        var trcalled = false;
-        var tlcalled = false;
+    class DirectionMock(val expectedDirection: Direction = Direction.NORTH) : IDirection {
+        var trcalled = false
+        var tlcalled = false
         override fun turnRigth(): Direction {
             trcalled = true
             return expectedDirection
@@ -29,11 +29,7 @@ class RoverTest {
             tlcalled = true
             return expectedDirection
         }
-
-
-
     }
-
 
     @Before
     fun setUp() {
@@ -43,7 +39,6 @@ class RoverTest {
     @After
     fun tearDown() {
     }
-
 
     @Test
     fun sutIsNotNil() {
@@ -55,7 +50,7 @@ class RoverTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(0,Rover.DEFAULT_X)
+        assertEquals(0, Rover.DEFAULT_X)
     }
 
     @Test
@@ -63,7 +58,7 @@ class RoverTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(0,Rover.DEFAULT_Y)
+        assertEquals(0, Rover.DEFAULT_Y)
     }
 
     @Test
@@ -71,30 +66,28 @@ class RoverTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(Rover.DEFAULT_X,sut.x)
-
+        assertEquals(Rover.DEFAULT_X, sut.x)
     }
     @Test
     fun initialRoverIsAtDefault_Y() {
-        assertEquals(Rover.DEFAULT_Y,sut.y)
-
+        assertEquals(Rover.DEFAULT_Y, sut.y)
     }
 
     @Test
     fun initRoverWithYPersists() {
         //Arrange
-        sut = Rover(y= TEST_Y)
+        sut = Rover(y = TEST_Y)
         //Act
         //Assert
-        assertEquals(TEST_Y,sut.y)
+        assertEquals(TEST_Y, sut.y)
     }
     @Test
     fun initRoverWithXPersists() {
         //Arrange
-        sut = Rover(x= TEST_X)
+        sut = Rover(x = TEST_X)
         //Act
         //Assert
-        assertEquals(TEST_X,sut.x)
+        assertEquals(TEST_X, sut.x)
     }
 
     @Test
@@ -102,9 +95,8 @@ class RoverTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(Direction.NORTH,sut.direction)
+        assertEquals(Direction.NORTH, sut.direction)
     }
-
 
     @Test
     fun changeDirectionRigthPointsEast() {
@@ -112,7 +104,7 @@ class RoverTest {
         //Act
         sut.applyCommand(command = TEST_RIGTH)
         //Assert
-        assertEquals(Direction.EAST,sut.direction)
+        assertEquals(Direction.EAST, sut.direction)
     }
     @Test
     fun changeDirectionRigthRigthPointsSouth() {
@@ -120,32 +112,32 @@ class RoverTest {
         //Act
         sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH))
         //Assert
-        assertEquals(Direction.SOUTH,sut.direction)
+        assertEquals(Direction.SOUTH, sut.direction)
     }
     @Test
     fun changeDirectionRigthRigthRigthPointsWest() {
         //Arrange
         //Act
-        sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH+ TEST_RIGTH))
+        sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH + TEST_RIGTH))
         //Assert
-        assertEquals(Direction.WEST,sut.direction)
+        assertEquals(Direction.WEST, sut.direction)
     }
     @Test
     fun changeDirectionRigthRigthRigthRigthPointsNorth() {
         //Arrange
         //Act
-        sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH+ TEST_RIGTH + TEST_RIGTH))
+        sut.applyCommand(command = (TEST_RIGTH + TEST_RIGTH + TEST_RIGTH + TEST_RIGTH))
         //Assert
-        assertEquals(Direction.NORTH,sut.direction)
+        assertEquals(Direction.NORTH, sut.direction)
     }
     @Test
     fun changeDirectionRigthFromEastPointsSouth() {
         //Arrange
-        sut = Rover(direction= Direction.EAST)
+        sut = Rover(direction = Direction.EAST)
         //Act
-        sut.applyCommand(command =  TEST_RIGTH)
+        sut.applyCommand(command = TEST_RIGTH)
         //Assert
-        assertEquals(Direction.SOUTH,sut.direction)
+        assertEquals(Direction.SOUTH, sut.direction)
     }
 
     @Test
@@ -169,7 +161,6 @@ class RoverTest {
         assertTrue(mock.tlcalled)
     }
 
-
     @Test
     fun testRoverTurnRigthStoreDirectionTurnRigth() {
         //Arrange
@@ -178,7 +169,7 @@ class RoverTest {
         sut.direction = mock
         sut.applyCommand("R")
         //Assert
-        assertEquals(Direction.SOUTH,sut.direction)
+        assertEquals(Direction.SOUTH, sut.direction)
     }
 
     @Test
@@ -189,7 +180,7 @@ class RoverTest {
         sut.direction = mock
         sut.applyCommand("L")
         //Assert
-        assertEquals(Direction.SOUTH,sut.direction)
+        assertEquals(Direction.SOUTH, sut.direction)
     }
 
     @Test
@@ -200,7 +191,7 @@ class RoverTest {
         sut.direction = mock
         sut.applyCommand("R")
         //Assert
-        assertEquals(Direction.NORTH,sut.direction)
+        assertEquals(Direction.NORTH, sut.direction)
     }
 
     @Test
@@ -211,7 +202,7 @@ class RoverTest {
         sut.direction = mock
         sut.applyCommand("L")
         //Assert
-        assertEquals(Direction.NORTH,sut.direction)
+        assertEquals(Direction.NORTH, sut.direction)
     }
 
     @Test
@@ -220,93 +211,86 @@ class RoverTest {
         //Act
         sut.applyCommand("F")
         //Assert
-        assertEquals(1,sut.y)
-        assertEquals(0,sut.x)
-
+        assertEquals(1, sut.y)
+        assertEquals(0, sut.x)
     }
 
     @Test
-    @Parameters("1,1,NORTH,F,1,2","1,1,EAST,F,2,1")
-    fun moveFromStatechangesCoordinatesParameters( x:Int, y:Int,direction: Direction,command:String,expectedX:Int,expectedY:Int) {
+    @Parameters("1,1,NORTH,F,1,2", "1,1,EAST,F,2,1")
+    fun moveFromStatechangesCoordinatesParameters( x: Int, y: Int, direction: Direction, command: String, expectedX: Int, expectedY: Int) {
         //Arrange
-        sut = Rover(x,y)
+        sut = Rover(x, y)
         sut.direction = direction
         //Act
         sut.applyCommand(command)
         //Assert
-        assertEquals(expectedX ,sut.x)
-        assertEquals(expectedY ,sut.y)
+        assertEquals(expectedX , sut.x)
+        assertEquals(expectedY , sut.y)
     }
 
     @Test
     @Parameters(method = "parametersMove")
-    fun moveFromStatechangesCoordinates( x:Int, y:Int,direction: Direction,command:String,expectedX:Int,expectedY:Int) {
+    fun moveFromStatechangesCoordinates( x: Int, y: Int, direction: Direction, command: String, expectedX: Int, expectedY: Int) {
         //Arrange
-        sut = Rover(x,y)
+        sut = Rover(x, y)
         sut.direction = direction
         //Act
         sut.applyCommand(command)
         //Assert
-        assertEquals(expectedX ,sut.x)
-        assertEquals(expectedY ,sut.y)
+        assertEquals(expectedX , sut.x)
+        assertEquals(expectedY , sut.y)
     }
 
-    fun  parametersMove(): List<Any> {
+    fun parametersMove(): List<Any> {
         return listOf(
-                listOf<Any>(1,1,Direction.NORTH,"F",1,2),
-                listOf<Any>(1,1,Direction.EAST,"F",2,1),
-                listOf<Any>(1,1,Direction.SOUTH,"F",1,0),
-                listOf<Any>(1,1,Direction.WEST,"F",0,1))
+                listOf<Any>(1, 1, Direction.NORTH, "F", 1, 2),
+                listOf<Any>(1, 1, Direction.EAST, "F", 2, 1),
+                listOf<Any>(1, 1, Direction.SOUTH, "F", 1, 0),
+                listOf<Any>(1, 1, Direction.WEST, "F", 0, 1))
     }
-
 
     @Test
     fun moveForwarfFromOtherStateIncermentsYNotX() {
         //Arrange
-        sut = Rover(TEST_X,TEST_Y)
+        sut = Rover(TEST_X, TEST_Y)
         //Act
         sut.applyCommand("F")
         //Assert
-        assertEquals(TEST_Y + 1 ,sut.y)
-        assertEquals(TEST_X ,sut.x)
-
+        assertEquals(TEST_Y + 1 , sut.y)
+        assertEquals(TEST_X , sut.x)
     }
     @Test
     fun moveRigthFromOtherStateIncermentsXNotY() {
         //Arrange
-        sut = Rover(TEST_X,TEST_Y)
+        sut = Rover(TEST_X, TEST_Y)
         sut.direction = Direction.EAST
         //Act
         sut.applyCommand("F")
         //Assert
-        assertEquals(TEST_X + 1 ,sut.x)
-        assertEquals(TEST_Y ,sut.y)
-
+        assertEquals(TEST_X + 1 , sut.x)
+        assertEquals(TEST_Y , sut.y)
     }
     @Test
     fun moveLeftFromOtherStateDecrementsXNotY() {
         //Arrange
-        sut = Rover(TEST_X,TEST_Y)
+        sut = Rover(TEST_X, TEST_Y)
         sut.direction = Direction.WEST
         //Act
         sut.applyCommand("F")
         //Assert
-        assertEquals(TEST_X - 1 ,sut.x)
-        assertEquals(TEST_Y ,sut.y)
-
+        assertEquals(TEST_X - 1 , sut.x)
+        assertEquals(TEST_Y , sut.y)
     }
 
     @Test
     fun moveBackFromOtherStateDecrementsYNotX() {
         //Arrange
-        sut = Rover(TEST_X,TEST_Y)
+        sut = Rover(TEST_X, TEST_Y)
         sut.direction = Direction.SOUTH
         //Act
         sut.applyCommand("F")
         //Assert
-        assertEquals(TEST_X ,sut.x)
-        assertEquals(TEST_Y -1 ,sut.y)
-
+        assertEquals(TEST_X , sut.x)
+        assertEquals(TEST_Y - 1 , sut.y)
     }
-
 }

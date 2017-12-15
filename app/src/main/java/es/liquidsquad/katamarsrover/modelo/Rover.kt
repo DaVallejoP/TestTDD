@@ -1,6 +1,5 @@
 package es.liquidsquad.katamarsrover.modelo
 
-
 class Rover(var x: Int = DEFAULT_X, var y: Int = DEFAULT_Y, var direction: IDirection = DEFAULT_DIR) {
     companion object {
         const val DEFAULT_X = 0
@@ -13,23 +12,19 @@ class Rover(var x: Int = DEFAULT_X, var y: Int = DEFAULT_Y, var direction: IDire
     }
 
     private fun doCommand(c: Char) {
-        if(c == 'R'){
+        if (c == 'R') {
             direction = direction.let { it.turnRigth() }
         }
-        if(c == 'L'){
+        if (c == 'L') {
             direction = direction.let { it.turnLeft() }
         }
-        if(c == 'F'){
-            when(direction){
+        if (c == 'F') {
+            when (direction) {
                 Direction.NORTH -> y++
-                Direction.EAST  -> x++
+                Direction.EAST -> x++
                 Direction.SOUTH -> y--
-                Direction.WEST  -> x--
-
-
+                Direction.WEST -> x--
             }
         }
     }
-
-
 }
